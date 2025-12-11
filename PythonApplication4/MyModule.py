@@ -28,10 +28,27 @@ def autoriseerimine(k:list, s:list)->any:
 def paroolivahetus(k:list, s:list)->any:
     vastus=input("Kas te tahate muuta parool? (Jah/Ei): ")
     if vastus=='Jah':
+        kasutajanimi=input("Sisesta sinu kasutajanimi: ")
 
-        print("Sisesta uus parool: ")
+        if kasutajanimi in k:
+            i=k.index(kasutajanimi)
+
+            uus_parool=input("Sisesta uus parool: ")
+            s[i]=uus_parool
+
+            print("Parool muudetud")
+        else:
+            print("Vale kasutajanimi!")
     else:
         print("Head aega")
 
 def paroolitaasramine(k:list, s:list)->any:
-    pass
+    kasutajanimi = input("Sisesta kasutajanimi: ")
+
+    if kasutajanimi in k:
+        i=k.index(kasutajanimi)
+        uus_parool=input("Sisesta uus parool: ")
+        s[i]=uus_parool
+        print("Parool taastatud!")
+    else:
+        print("Sellist kasutajanime pole!")
