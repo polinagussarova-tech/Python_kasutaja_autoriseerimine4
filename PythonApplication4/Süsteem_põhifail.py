@@ -19,7 +19,7 @@ while True:
     elif valik=='3':
         paroolivahetus(k, s)
     elif valik=='4':
-        paroolitaasramine(k, s)
+        paroolitaastamine(k, s)
     elif valik=='5':
         print("Väljun programmist.")
         break

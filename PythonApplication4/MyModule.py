@@ -1,8 +1,5 @@
 #Registreerimine
 
-from pickletools import string1
-
-
 k=[]
 s=[]
 
@@ -12,9 +9,7 @@ def registreerimine(k:list, s:list)->any:
         print("Selline kasutaja on juba olemas!")
         return
 
-    küsimus=print(input("Kas te soovite reegistreerida?: (Jah/Ei) "))
-
-    vastus=input("Valige 1, kui te soovite parooli ise luua või valige 2, kui soovite teha parooli genereerimise abil: (1/2) ")
+    vastus=input("Valige 1, kui te soovite parooli ise luua või valige 2, kui soovite teha parooli genereerimise abil (1/2):")
 
     if vastus=="1":
         while True:
@@ -35,53 +30,55 @@ def registreerimine(k:list, s:list)->any:
                 if t in ".,:;!_*-+()/#¤%&":
                     symbol=True
 
-            if number and lower and upper and symbol:
+            if number or lower or upper or symbol:
                 print(f"Uus parool on {parool}")
                 break
-            else:
-                print("Parool ei vasta tingimustele!")
 
     elif vastus=="2":
         import random
-
+        parool=""
         str1=".,:;!_*-+()/#¤%&"
         str2="0123456789"
         str3="qwertyuiopasdfghjklzxcvbnm"
         str4=str3.upper()
 
         kõik=str1+str2+str3+str4
-        parooll=""
-
         for i in range(12):
-            parooll+=random.choice(kõik)
+            parool += random.choice(kõik)
 
-        print(f"Genereeritud parool:{parooll}")
+        print(f"Genereeritud parool:{parool}")
+        
 
     else:
-        print("Palun sisesta ainult Jah või Ei!")
+        print("Palun sisesta ainult 1 või 2!")
         return
-
-
-
-
-
 
     k.append(kasutajanimi)
     s.append(parool)
+    print(k)
+    print(s)
 
-
+#Autoriseerimine
 
 def autoriseerimine(k:list, s:list)->any:
     kasutajanimi=input("Sisesta kasutajanimi: ")
     if kasutajanimi not in k:
+        print("Seda kasutaja ei ole!")
         return
-    parool = input("Sisesta parool: ")
+    parool=input("Sisesta parool: ")
 
     i=k.index(kasutajanimi)
     if s[i]==parool:
         print("Sisselogitud!")
     else:
         print("Vale parool!")
+
+    k.append(kasutajanimi)
+    s.append(parool)
+    print(k)
+    print(s)
+
+#Paroolivahetus
 
 def paroolivahetus(k:list, s:list)->any:
     vastus=input("Kas te tahate muuta parool? (Jah/Ei): ")
@@ -100,13 +97,22 @@ def paroolivahetus(k:list, s:list)->any:
     else:
         print("Head aega")
 
-def paroolitaasramine(k:list, s:list)->any:
+#Paroolitaastamine
+
+def paroolitaastamine(k:list, s:list)->any:
     kasutajanimi = input("Sisesta kasutajanimi: ")
 
     if kasutajanimi in k:
         i=k.index(kasutajanimi)
+
         uus_parool=input("Sisesta uus parool: ")
         s[i]=uus_parool
         print("Parool taastatud!")
+
     else:
         print("Sellist kasutajanime pole!")
+
+    k.append(kasutajanimi)
+    s.append(uus_parool)
+    print(k)
+    print(s)
