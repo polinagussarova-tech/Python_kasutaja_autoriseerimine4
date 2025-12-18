@@ -73,10 +73,7 @@ def autoriseerimine(k:list, s:list)->any:
     else:
         print("Vale parool!")
 
-    k.append(kasutajanimi)
-    s.append(parool)
-    print(k)
-    print(s)
+
 
 #Paroolivahetus
 
